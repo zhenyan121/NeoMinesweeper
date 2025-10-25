@@ -23,12 +23,7 @@ jobs:
           7z x raylib.zip -oraylib
 
       - name: Compile with static linking (C mode)
-        run: |
-          gcc -O2 -s -static -o minesweeper.exe ^
-            main.c board.c input.c render.c save.c ^
-            -Iraylib/include ^
-            -Lraylib/lib/mingw32 ^
-            -lraylib -lopengl32 -lgdi32 -lwinmm -pthread
+        run: gcc -O2 -s -static -o minesweeper.exe main.c board.c input.c render.c save.c -Iraylib/include -Lraylib/lib/mingw32 -lraylib -lopengl32 -lgdi32 -lwinmm -pthread
 
       - name: Upload EXE to Release
         uses: softprops/action-gh-release@v2
