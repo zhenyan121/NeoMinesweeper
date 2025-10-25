@@ -27,8 +27,9 @@
 - raylib 图形库
 
 ### 编译命令
+#Linux系统：
 ```bash
-gcc -o minesweeper main.c game.c render.c save.c -lraylib -lGL -lm -lpthread -ldl
+gcc -o minesweeper main.c save.c board.c input.c render.c -lraylib -lGL -lm -lpthread -ldl
 ```
 
 ## 运行方式

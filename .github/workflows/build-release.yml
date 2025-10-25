@@ -1,0 +1,38 @@
+name: Build and Release Windows EXE
+
+on:
+  release:
+    types: [published]  # 仅在发布 Release 时触发
+
+jobs:
+  build-windows:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install MinGW-w64
+        run: |
+          choco install mingw --confirm
+          echo "C:\tools\mingw64\bin" >> $GITHUB_PATH
+
+      - name: Download static raylib for MinGW (v5.0)
+        run: |
+          curl -L https://github.com/raysan5/raylib/releases/download/5.0/raylib-5.0_win64_mingw-w64.zip -o raylib.zip
+          7z x raylib.zip -oraylib
+
+      - name: Compile with static linking (C mode)
+        run: |
+          gcc -O2 -s -static -o minesweeper.exe ^
+            main.c board.c input.c render.c save.c ^
+            -Iraylib/include ^
+            -Lraylib/lib/mingw32 ^
+            -lraylib -lopengl32 -lgdi32 -lwinmm -pthread
+
+      - name: Upload EXE to Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: minesweeper.exe
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
