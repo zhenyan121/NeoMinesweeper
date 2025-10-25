@@ -12,7 +12,6 @@
 #define COLS 16          // 列数
 #define MAX_BOMBS 30    // 炸弹总数
 #define SAVE_NAME "gamesave.dat"
-#define TIME_SAVE_NAME "timesave.dat"
 
 #define TEXTSIZE 30
 
@@ -37,6 +36,12 @@ typedef struct {
     bool revealed;          // 是否已被揭示（翻开）
     bool isflag;
 } Cell;
+
+typedef struct {
+    Cell board_save[ROWS][COLS];
+    float GAME_TIME_save;
+
+} GameSave;
 
 typedef enum {
     GAME_RUNNING,
