@@ -21,31 +21,33 @@ void WriteBoardDebug() {
 
 void WriteGameSave() {
     if (GAME_STATE == GAME_RUNNING) {
-        SaveFileData(SAVE_NAME, board, sizeof(Cell) * ROWS * COLS);
-        SaveFileData(TIME_SAVE_NAME, &GAME_TIME, sizeof(float));
+        GameSave gamedata;
+        memcpy(gamedata.board_save, board, sizeof(board));
+        gamedata.GAME_TIME_save = GAME_TIME;
+        SaveFileData(SAVE_NAME, &gamedata, sizeof(GameSave));
+        
     }
 }
 
 bool LoadGameSave() {
+    GameSave gamedata;
     int datasize = 0;
     unsigned char * filedata = LoadFileData(SAVE_NAME, &datasize);
     if (filedata == NULL) {
        // UnloadFileData(filedate);
         remove(SAVE_NAME);
-        remove(TIME_SAVE_NAME);
         return false;
     }
-    if (datasize != sizeof(board)) {
+    if (datasize != sizeof(GameSave)) {
         UnloadFileData(filedata);
         remove(SAVE_NAME);
-        remove(TIME_SAVE_NAME);
         return false;
     }
-    memcpy(board, filedata, sizeof(board));
+    memcpy(&gamedata, filedata, sizeof(GameSave));
+    memcpy(board, gamedata.board_save, sizeof(board));
+    GAME_TIME = gamedata.GAME_TIME_save;
     UnloadFileData(filedata);
     remove(SAVE_NAME);
-    filedata = NULL;
-    datasize = 0;
     if (DEBUG_MODE == true) {
         WriteBoardDebug();
         int bombsPlaced = 0;
@@ -58,22 +60,6 @@ bool LoadGameSave() {
                         printf("\n");
                 }
             }
-    }
-    filedata = LoadFileData(TIME_SAVE_NAME, &datasize);
-    if (filedata == NULL) {
-       // UnloadFileData(filedate);
-        remove(SAVE_NAME);
-        remove(TIME_SAVE_NAME);
-        return false;
-    }
-    if (datasize != sizeof(float)) {
-        UnloadFileData(filedata);
-        remove(TIME_SAVE_NAME);
-        remove(SAVE_NAME);
-        return false;
-    }
-    memcpy(&GAME_TIME, filedata, sizeof(float));
-    UnloadFileData(filedata);
-    remove(TIME_SAVE_NAME);
+    }  
     return true;
 }

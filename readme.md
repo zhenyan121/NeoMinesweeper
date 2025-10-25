@@ -27,9 +27,20 @@
 - raylib 图形库
 
 ### 编译命令
-#Linux系统：
+### Linux系统：
+需要预先安装raylib图形库，例如：
+```bash
+sudo pacman -S raylib
+```
+
 ```bash
 gcc -o minesweeper main.c save.c board.c input.c render.c -lraylib -lGL -lm -lpthread -ldl
+```
+
+### Windows:
+需要手动指定raylib目录，例如：
+```powershell
+gcc main.c save.c board.c input.c render.c -o minesweeper -Iinclude -Llib -lraylib -lopengl32 -lgdi32 -lwinmm "-Wl,--subsystem,windows"
 ```
 
 ## 运行方式
@@ -64,7 +75,7 @@ gcc -o minesweeper main.c save.c board.c input.c render.c -lraylib -lGL -lm -lpt
 游戏支持自动存档功能：
 - 游戏进行中关闭窗口会自动保存
 - 下次启动时自动加载存档
-- 存档文件：`gamesave.dat` 和 `timesave.dat`
+- 存档文件：`gamesave.dat`
 
 
 ## 文件结构
