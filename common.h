@@ -12,6 +12,7 @@
 #define COLS 16          // 列数
 #define MAX_BOMBS 30    // 炸弹总数
 #define SAVE_NAME "gamesave.dat"
+#define WINDOWS_TITLE "NeoMinesweeper v1.9"
 
 #define TEXTSIZE 30
 
@@ -81,5 +82,6 @@ void handleMouseClick();
 void revealAllBombs();
 void render_gameover();
 
+void revealAdjacent(int y, int x);
 
 #endif
