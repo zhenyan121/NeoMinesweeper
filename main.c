@@ -23,7 +23,7 @@ int main(int argc, char * argv[]) {
         DEBUG_MODE = true;
     
     // 初始化窗口
-    InitWindow(screenWidth, screenHeight, "Minesweeper");
+    InitWindow(screenWidth, screenHeight, WINDOWS_TITLE);
     SetTargetFPS(60);  // 设置帧率
     if (!LoadGameSave())
         // 初始化棋盘
