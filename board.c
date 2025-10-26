@@ -131,3 +131,44 @@ void revealAllBombs() {
         }
     }
 }
+
+void revealAdjacent(int y, int x) {
+    int adjacent_flag = 0;
+    int dx, dy;
+    for (dy = -1; dy <= 1; dy++) {
+        for (dx = -1; dx <= 1; dx++) {
+            int ny = y + dy;
+            int nx = x + dx;
+            if (ny >= 0 && ny < ROWS && nx >= 0 && nx < COLS)
+            if (board[ny][nx].isflag) {
+                adjacent_flag++;
+            }
+        }
+    }
+    if (adjacent_flag != board[y][x].adjacentBombs ) {
+        return;
+    }
+     for (dy = -1; dy <= 1; dy++) {
+        for (dx = -1; dx <= 1; dx++) {
+            int ny = y + dy;
+            int nx = x + dx;
+            if (ny >= 0 && ny < ROWS && nx >= 0 && nx < COLS) {
+                if (!board[ny][nx].revealed && !board[ny][nx].isflag) {
+                    if (board[ny][nx].adjacentBombs == 0 && !board[ny][nx].isBomb) {
+                        autorevealblank(ny, nx);
+                    }
+                    else
+                        board[ny][nx].revealed = true;
+                    
+                //printf("board[%d][%d]isflag = %d\n", ny, nx, board[ny][nx].isflag);
+                }
+
+                if (board[ny][nx].isBomb && board[ny][nx].revealed) {
+                //printf("board[%d][%d]isflag = %d\n", ny, nx, board[ny][nx].isflag);
+                    GAME_STATE = GAME_LOST;
+                    return;
+                }
+            }
+        }
+     }
+}

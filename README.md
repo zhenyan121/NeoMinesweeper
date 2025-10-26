@@ -1,6 +1,6 @@
 # Minesweeper 扫雷游戏
 
-一个使用 C 语言和 raylib 图形库开发的经典扫雷游戏。
+一个使用 C 语言和 raylib 图形库开发的扫雷游戏。
 
 ## 游戏特性
 
@@ -16,6 +16,7 @@
 - **左键点击**：揭开格子
 - **右键点击**：放置/取消旗帜
 - **空白区域**：自动展开相邻空白区域
+- **数字格快捷操作**：左键点击已揭开的数字格，若其周围旗帜数量正确，会自动揭开其余未标记的邻格
 - **胜利条件**：
   - 揭开所有非炸弹格子
   - 或使用旗帜正确标记所有炸弹
@@ -27,7 +28,7 @@
 - raylib 图形库
 
 ### 编译命令
-### Linux系统：
+**Linux系统：**
 需要预先安装raylib图形库，例如：
 ```bash
 sudo pacman -S raylib
@@ -37,8 +38,8 @@ sudo pacman -S raylib
 gcc -o minesweeper main.c save.c board.c input.c render.c -lraylib -lGL -lm -lpthread -ldl
 ```
 
-### Windows:
-需要手动指定raylib目录，例如：
+**Windows：**
+需要手动指定raylib目录，例如；  
 ```powershell
 gcc main.c save.c board.c input.c render.c -o minesweeper -Iinclude -Llib -lraylib -lopengl32 -lgdi32 -lwinmm "-Wl,--subsystem,windows"
 ```

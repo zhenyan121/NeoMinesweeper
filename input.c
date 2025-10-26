@@ -15,15 +15,19 @@ void handleMouseClick() {
             if (board[clickedRow][clickedCol].adjacentBombs == 0 && !board[clickedRow][clickedCol].isBomb) {
                 autorevealblank(clickedRow, clickedCol);
             }
-            else {
+            else if (board[clickedRow][clickedCol].revealed && board[clickedRow][clickedCol].adjacentBombs != 0) {
+                revealAdjacent(clickedRow, clickedCol);
+                //printf("revealAdjacent %d %d\n", clickedRow, clickedCol);
+            }
+            else { 
                 // 揭示该格子
                 board[clickedRow][clickedCol].revealed = true;
                 // 取消旗帜状态 使其可以进行旗帜胜利判断
                 if (board[clickedRow][clickedCol].isflag) {
                 board[clickedRow][clickedCol].isflag = false;
                 //printf("cancer flag succes");
+                }
             }
-        }
 
             // 调试输出
         //    printf("Revealed cell: Row %d, Col %d\n", clickedRow, clickedCol);
