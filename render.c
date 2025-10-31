@@ -15,15 +15,21 @@ void draw_board() {
                     DrawRectangle(posX, posY, cellWidth - 1, cellHeight - 1, BOMB_COLOR);
                 } else {
                     // 数字转字符串并绘制（0 时不显示）
-                    if (board[y][x].adjacentBombs > 0) {
+                    if (board[y][x].adjacentBombs > 0 && !board[y][x].ismarked) {
                         char buffer[2];
                         sprintf(buffer, "%d", board[y][x].adjacentBombs);
                         DrawRectangle(posX, posY, cellWidth - 1, cellHeight - 1, TEXT_BACKERGROUND_COLOR);
                         DrawText(buffer, posX + cellWidth / 3 + 2, posY + cellHeight / 3 - 3, TEXTSIZE, TEXT_COLOR);
                     } else {
+
+                        if(board[y][x].ismarked) {
+                            DrawRectangle(posX, posY, cellWidth - 1, cellHeight - 1, TEXT_BACKERGROUND_COLOR);
+                            DrawText("?", posX + cellWidth / 3 + 2, posY + cellHeight / 3 - 3, TEXTSIZE, TEXT_COLOR);
+                        } else {
                         // 空白格子（无相邻炸弹）
                         DrawRectangle(posX, posY, cellWidth - 1, cellHeight - 1, TEXT_BACKERGROUND_COLOR);
                     }
+                }
                 }
             } else if (board[y][x].isflag) {
                 DrawRectangle(posX, posY, cellWidth - 1, cellHeight - 1, COVER_COLOR);

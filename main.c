@@ -41,6 +41,7 @@ int main(int argc, char * argv[]) {
             handleMouseClick();
             //计算时间
             GAME_TIME += GetFrameTime();
+            markNumberedTiles();
         }
         // 绘制
         BeginDrawing();

@@ -12,6 +12,7 @@ void initializeBoard() {
             board[i][j].adjacentBombs = 0;
             board[i][j].revealed = false;
             board[i][j].isflag = false;
+            board[i][j].ismarked = false;
         }
     }
 
@@ -171,4 +172,22 @@ void revealAdjacent(int y, int x) {
             }
         }
      }
+}
+
+void markNumberedTiles() {
+    int isStartMark;
+    int isMarked = 0;
+    srand(time(NULL));
+    isStartMark = rand() % 100 + 1; //20%概率随机生成1到3格？格
+    isMarked = rand() % 3 + 1;
+    if (isStartMark <= 20) {
+        while(isMarked > 0) {
+            int row = rand() % ROWS;
+            int col = rand() % COLS;
+            if (/*board[row][col].revealed &&*/ !board[row][col].isBomb && board[row][col].adjacentBombs != 0) {
+                board[row][col].ismarked = true;
+                isMarked--;
+            }
+        }
+    }
 }

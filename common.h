@@ -12,7 +12,7 @@
 #define COLS 16          // 列数
 #define MAX_BOMBS 30    // 炸弹总数
 #define SAVE_NAME "gamesave.dat"
-#define WINDOWS_TITLE "NeoMinesweeper v1.9"
+#define WINDOWS_TITLE "NeoMinesweeper v1.10 - is a different game ?"
 
 #define TEXTSIZE 30
 
@@ -36,6 +36,7 @@ typedef struct {
     int adjacentBombs;      // 周围炸弹数量
     bool revealed;          // 是否已被揭示（翻开）
     bool isflag;
+    bool ismarked;
 } Cell;
 
 typedef struct {
@@ -83,5 +84,6 @@ void revealAllBombs();
 void render_gameover();
 
 void revealAdjacent(int y, int x);
-
+//覆盖已经揭开的数字格增加难度
+void markNumberedTiles();
 #endif
