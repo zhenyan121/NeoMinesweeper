@@ -5,6 +5,7 @@
 void initializeBoard() {
     //初始化时间
     GAME_TIME = 0.0f;
+    lastTriggeredSecond = -1;
     // 1. 初始化所有格子
     for (int i = 0; i < ROWS; ++i) {
         for (int j = 0; j < COLS; ++j) {
@@ -17,7 +18,7 @@ void initializeBoard() {
     }
 
     // 2. 随机放置炸弹（确保不重复）
-    srand(time(NULL));  // 初始化随机种子
+    
     int bombsPlaced = 0;
     while (bombsPlaced < MAX_BOMBS) {
         int row = rand() % ROWS;
@@ -177,10 +178,10 @@ void revealAdjacent(int y, int x) {
 void markNumberedTiles() {
     int isStartMark;
     int isMarked = 0;
-    srand(time(NULL));
-    isStartMark = rand() % 100 + 1; //20%概率随机生成1到3格？格
-    isMarked = rand() % 3 + 1;
-    if (isStartMark <= 20) {
+    
+    isStartMark = rand() % 100; //15%概率随机生成1到3格？格
+    isMarked = rand() % 6 + 1;
+    if (isStartMark < 15) {
         while(isMarked > 0) {
             int row = rand() % ROWS;
             int col = rand() % COLS;
@@ -190,4 +191,35 @@ void markNumberedTiles() {
             }
         }
     }
+}
+
+void setWindowsTitle(char * title) {
+    
+    char s[MAX_TITLE_SUM][MAX_TITLE_LENGTH] = {
+        "Is a different game ?",
+        "Try to press alt + f4, you maybe surprise.",
+        "The journey is not yet over! (Or is it?)",
+        "If you close this window, how will it see?",
+        "This dialog box is now sad.",
+        "Your mouse seems very determined today.",
+        "Do error messages dream of electric sheep?",
+        "This pixel is doing its best.",
+        "The universe is mostly empty space. Just like this.",
+        "Warning: Humor levels critical. Proceed with caution.",
+        "Are you kidding me? look my eyes!",
+        "Is Minecraft a Minesweeper ?????",
+        "Do you know the true meaning is mine + sweeper?",
+        "Is Undertale undermine + sweep + sans?????",
+        "Archlinux is really good.",
+        "Play Minecraft with me!",
+        "F**k, Nvida!",
+        "It's Friday then, it's Saturday Sunday what!",
+        "dudududu Max Verstappen"
+        //fuck tx 
+        //wo de xue xiao is a s13， gb zao cao，gb zao zi xi， gb wan zi xi
+    };
+    int index = rand() % MAX_TITLE_SUM;
+    snprintf(title, MAX_TITLE_LENGTH, "NeoMinesweeper " VERSION " - %s", s[index]);
+    //puts(title);
+
 }
