@@ -11,16 +11,25 @@
 - 调试模式支持
 - 随机隐藏事件
 - 现代化配色方案
+- 有意思的窗口标题
 
 ## 游戏规则
 
 - **左键点击**：揭开格子
 - **右键点击**：放置/取消旗帜
+- **R键输入**：重新开始
+- **H键输入**：打开/关闭帮助菜单
 - **空白区域**：自动展开相邻空白区域
 - **数字格快捷操作**：左键点击已揭开的数字格，若其周围旗帜数量正确，会自动揭开其余未标记的邻格
 - **胜利条件**：
   - 揭开所有非炸弹格子
   - 或使用旗帜正确标记所有炸弹
+
+## 游戏截图  
+![help](https://github.com/zhenyan121/NeoMinesweeper/raw/main/images/help.png)  
+![gaming](https://github.com/zhenyan121/NeoMinesweeper/raw/main/images/gaming.png)  
+![win](https://github.com/zhenyan121/NeoMinesweeper/raw/main/images/win.png)  
+![lost](https://github.com/zhenyan121/NeoMinesweeper/raw/main/images/lost.png)  
 
 ## 编译说明
 

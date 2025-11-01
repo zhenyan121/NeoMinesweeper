@@ -68,3 +68,31 @@ void render_gameover() {
                 DrawText(temp, screenWidth/2 - 100, screenHeight/2 + 15, TEXTSIZE, GREEN);
             }    
 }
+
+void render_help_menu() {
+    if (GAME_STATE != GAME_RUNNING || !HELP_MENU) {
+        return;
+    }
+   /* int titlesize = TEXTSIZE + 30;
+    int mainsize = titlesize * 0.75;
+    int smalltitlesize = titlesize * 0.8;
+    int overgamesize = titlesize * 0.7;
+    int detailsize = titlesize * 0.65;*/
+    DrawText("Help   Menu",screenWidth/2 - 125, screenHeight/2 - 350, TEXTSIZE + 5, HELP_MENU_COLOR);
+    DrawText("Controls:",screenWidth/2 - 400, screenHeight/2 - 300, TEXTSIZE + 3, HELP_MENU_COLOR);
+    DrawText("Left click: Reveal a tile",screenWidth/2 - 300, screenHeight/2 - 250, TEXTSIZE, HELP_MENU_COLOR);
+    DrawText("Right click: Place or remove a flag",screenWidth/2 - 300, screenHeight/2 - 200, TEXTSIZE, HELP_MENU_COLOR);
+    DrawText("How to Win:",screenWidth/2 - 400, screenHeight/2 - 150, TEXTSIZE + 3, HELP_MENU_COLOR);
+    DrawText("Reveal all tiles that are not mines, or",screenWidth/2 - 300, screenHeight/2 - 100, TEXTSIZE , HELP_MENU_COLOR);
+    DrawText("Correctly flag all mines",screenWidth/2 - 300, screenHeight/2 - 50, TEXTSIZE, HELP_MENU_COLOR);
+    DrawText("Others:",screenWidth/2 - 400, screenHeight/2, TEXTSIZE + 3, HELP_MENU_COLOR);
+    DrawText("Press H to toggle this help menu",screenWidth/2 - 300, screenHeight/2 + 50, TEXTSIZE, HELP_MENU_COLOR);
+    DrawText("Click anywhere on the board to close this menu",screenWidth/2 - 300, screenHeight/2 + 100, TEXTSIZE , HELP_MENU_COLOR);
+    DrawText("Tips:",screenWidth/2 - 400, screenHeight/2 + 150, TEXTSIZE + 3, HELP_MENU_COLOR);
+    DrawText("Quick Reveal: Left-click a revealed number tile.",screenWidth/2 - 370, screenHeight/2 + 200, TEXTSIZE, HELP_MENU_COLOR);
+    DrawText("If the correct number of flags is placed around it,",screenWidth/2 - 370, screenHeight/2 + 250, TEXTSIZE, HELP_MENU_COLOR);
+    DrawText("all unflagged neighboring tiles will automatically open.",screenWidth/2 - 370, screenHeight/2 + 300, TEXTSIZE, HELP_MENU_COLOR);
+    
+
+
+}

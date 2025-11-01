@@ -12,9 +12,12 @@
 #define COLS 16          // 列数
 #define MAX_BOMBS 30    // 炸弹总数
 #define SAVE_NAME "gamesave.dat"
-#define WINDOWS_TITLE "NeoMinesweeper v1.10 - is a different game ?"
+//#define WINDOWS_TITLE "NeoMinesweeper v1.10 - is a different game ?"
 
 #define TEXTSIZE 30
+#define MAX_TITLE_LENGTH 100
+#define MAX_TITLE_SUM 19
+#define VERSION "v1.11"
 
 #define TEXT_BACKERGROUND_COLOR   (Color){255, 242, 222, 255} 
 #define BOMB_COLOR     (Color){213, 126, 119, 255} 
@@ -22,6 +25,7 @@
 #define TEXT_COLOR   (Color){102, 84, 84, 255}   
 #define FLAG_COLOR  (Color){50, 200, 180, 255}  
 #define BOARD_BACKGROUND_COLOR  (Color){248, 240, 229, 255}
+#define HELP_MENU_COLOR (Color){150, 100, 80, 255}
 /*
 #define TEXT_BACKERGROUND_COLOR   (Color){255, 242, 222, 255} 
 #define BOMB_COLOR     (Color){188, 143, 125, 255} 
@@ -65,7 +69,8 @@ extern const int cellHeight;
 extern GameState GAME_STATE; // 0 - 进行中, 1 - 胜利, -1 - 失败
 extern bool DEBUG_MODE; // 调试模式参数
 extern float GAME_TIME;
-
+extern int lastTriggeredSecond;
+extern bool HELP_MENU;
 
 void WriteBoardDebug();
 void WriteGameSave();
@@ -82,8 +87,11 @@ void flagwincheck();
 void handleMouseClick();
 void revealAllBombs();
 void render_gameover();
+void render_help_menu();
 
 void revealAdjacent(int y, int x);
 //覆盖已经揭开的数字格增加难度
 void markNumberedTiles();
+//设置随机窗口标题
+void setWindowsTitle(char *);
 #endif
