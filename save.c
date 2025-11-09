@@ -20,13 +20,16 @@ void WriteBoardDebug() {
 }
 
 void WriteGameSave() {
-    if (GAME_STATE == GAME_RUNNING) {
+    if (GAME_STATE != GAME_RUNNING) {
+        initializeBoard ();
+    }
         GameSave gamedata;
         memcpy(gamedata.board_save, board, sizeof(board));
         gamedata.GAME_TIME_save = GAME_TIME;
+        gamedata.HELP_MENU_save = HELP_MENU;
         SaveFileData(SAVE_NAME, &gamedata, sizeof(GameSave));
         
-    }
+    
 }
 
 bool LoadGameSave() {
@@ -46,8 +49,9 @@ bool LoadGameSave() {
     memcpy(&gamedata, filedata, sizeof(GameSave));
     memcpy(board, gamedata.board_save, sizeof(board));
     GAME_TIME = gamedata.GAME_TIME_save;
+    HELP_MENU = gamedata.HELP_MENU_save;
     UnloadFileData(filedata);
-    remove(SAVE_NAME);
+    
     if (DEBUG_MODE == true) {
         WriteBoardDebug();
         int bombsPlaced = 0;
