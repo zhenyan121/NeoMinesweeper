@@ -214,8 +214,7 @@ void setWindowsTitle(char * title) {
         "Play Minecraft with me!",
         "F**k, Nvida!",
         "It's Friday then, it's Saturday Sunday what!",
-        "dudududu Max Verstappen"
-        //fuck tx 
+        "dudududu Max Verstappen" 
         //wo de xue xiao is a s13， gb zao cao，gb zao zi xi， gb wan zi xi
     };
     int index = rand() % MAX_TITLE_SUM;

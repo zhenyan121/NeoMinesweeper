@@ -46,7 +46,7 @@ typedef struct {
 typedef struct {
     Cell board_save[ROWS][COLS];
     float GAME_TIME_save;
-
+    bool HELP_MENU_save;
 } GameSave;
 
 typedef enum {
